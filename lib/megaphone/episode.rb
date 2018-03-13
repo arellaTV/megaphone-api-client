@@ -9,7 +9,7 @@ module Megaphone
         @config ||= MegaphoneClient
       end
       
-      def find_by_id external_id
+      def find external_id
         episode = connection("https://cms.megaphone.fm/api/search/episodes?externalId=#{external_id}")
         
         episode.first
