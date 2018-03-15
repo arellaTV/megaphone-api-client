@@ -22,6 +22,8 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 
 ### Updating
 
+Note: the properties in `body` are written in camelCase because it's expected by the Megaphone API
+
 ```ruby
   Megaphone::Episode.update({
     podcast_id: "{podcast id}",
