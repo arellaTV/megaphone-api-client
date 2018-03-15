@@ -18,7 +18,9 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 
 ### Searching
 
-`Megaphone::Episode.search({ externalId: obj_key })`
+```ruby
+Megaphone::Episode.search({ externalId: obj_key })
+```
 
 ### Updating
 
@@ -38,13 +40,16 @@ Note: the properties in `body` are written in camelCase because it's expected by
 
 ### Listing Podcasts
 
-`Megaphone::Podcast.list`
+```ruby
+Megaphone::Podcast.list
+```
 
 ### Creating
 
 **(TO:DO)**
-`Megaphone::Episode.create(attributes)`
-
+```ruby
+Megaphone::Episode.create(attributes)
+```
 
 ## Contributing
 
