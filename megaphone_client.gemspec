@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   
   s.add_dependency "faraday", "~> 0.8"
+  s.add_dependency "rest-client", "~> 2.0.1"
 end

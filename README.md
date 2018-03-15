@@ -16,9 +16,25 @@ Configure your app to connect to Megaphone, either in an initializer or your env
   end
 ```
 
-### Finding
+### Searching
 
-`Megaphone::Episode.find(obj_key)`
+`Megaphone::Episode.search({ externalId: obj_key })`
+
+### Updating
+
+`Megaphone::Episode.update({
+  podcast_id: "{podcast id}",
+  episode_id: "{episode id}",
+  body: {
+    preCount: 1,
+    postCount: 2,
+    insertionPoints: ["10.1, "15.23", "18"]
+  }
+})`
+
+### Listing Podcasts
+
+`Megaphone::Podcast.list`
 
 ### Creating
 

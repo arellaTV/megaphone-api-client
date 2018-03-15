@@ -1,4 +1,4 @@
-require 'faraday'
+require 'rest-client'
 require 'ostruct'
 require 'json'
 
@@ -9,19 +9,39 @@ module Megaphone
         @config ||= MegaphoneClient
       end
       
-      def find external_id
-        episode = connection("https://cms.megaphone.fm/api/search/episodes?externalId=#{external_id}")
-        
-        episode.first
+      def default_headers
+        {
+          content_type: 'application/json',
+          authorization: "Token token=#{config.token}",
+          params: {}
+        }
       end
 
-      def connection url
-        conn = Faraday.new(:url => url)
+      def search options={}
+        episode = connection({
+          :url => "https://cms.megaphone.fm/api/search/episodes",
+          :method => :get,
+          :params => options
+        })
+      end
+
+      def update options={}
+        episode = connection({
+          :url => "https://cms.megaphone.fm/api/networks/#{config.network}/podcasts/#{options[:podcast_id]}/episodes/#{options[:episode_id]}",
+          :method => :put,
+          :body => options[:body] || {}
+        })
+      end
+
+      def connection options={}
+        request_headers = default_headers.merge({ params: options[:params] })
         
-        response = conn.get do |req|
-          req.headers['Content-Type'] = 'application/json'
-          req.headers['Authorization'] = "Token token=#{config.token}"
-        end
+        response = RestClient::Request.execute(
+          url: options[:url],
+          method: options[:method],
+          headers: request_headers,
+          payload: options[:body].to_json
+        )
         
         JSON.parse(response.body, object_class: OpenStruct)
       end
