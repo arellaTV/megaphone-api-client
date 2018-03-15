@@ -1,8 +1,8 @@
 # Megaphone Client
-Ruby client for the Megaphone API
+Unofficial Ruby client for the Megaphone API
 
 ## Installation
-    gem 'megaphone-api-client', github:"scpr/megaphone_client"
+    gem 'megaphone_client', github:"scpr/megaphone_client"
 
 ## Usage
 ### Configuration
