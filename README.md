@@ -22,15 +22,17 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 
 ### Updating
 
-`Megaphone::Episode.update({
-  podcast_id: "{podcast id}",
-  episode_id: "{episode id}",
-  body: {
-    preCount: 1,
-    postCount: 2,
-    insertionPoints: ["10.1, "15.23", "18"]
-  }
-})`
+```ruby
+  Megaphone::Episode.update({
+    podcast_id: "{podcast id}",
+    episode_id: "{episode id}",
+    body: {
+      preCount: 1,
+      postCount: 2,
+      insertionPoints: ["10.1, "15.23", "18"]
+    }
+  })
+```
 
 ### Listing Podcasts
 
