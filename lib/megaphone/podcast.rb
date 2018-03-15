@@ -1,6 +1,6 @@
-require 'faraday'
 require 'ostruct'
 require 'json'
+require 'rest-client'
 
 module Megaphone
   class Podcast
@@ -9,19 +9,43 @@ module Megaphone
         @config ||= MegaphoneClient
       end
 
-      def list
-        connection("https://cms.megaphone.fm/api/networks/#{config.network}/podcasts")
+      def default_headers
+        {
+          content_type: 'application/json',
+          authorization: "Token token=#{config.token}",
+          params: {}
+        }
+      end
+
+      def list options={}
+        episode = connection({
+          :url => "https://cms.megaphone.fm/api/networks/#{config.network_id}/podcasts",
+          :method => :get
+        })
       end
       
-      def connection url
-        conn = Faraday.new(:url => url)
+      def connection options={}
+        request_headers = default_headers.merge({ params: options[:params] })
         
-        response = conn.get do |req|
-          req.headers['Content-Type'] = 'application/json'
-          req.headers['Authorization'] = "Token token=#{config.token}"
+        begin
+          response = RestClient::Request.execute(
+            url: options[:url],
+            method: options[:method],
+            headers: request_headers,
+            payload: options[:body].to_json
+          )
+          response_body = response.body
+        rescue RestClient::ExceptionWithResponse => err
+          response_body = {
+            body: err.response.body,
+            code: err.response.code,
+            description: err.response.description,
+            headers: err.response.headers,
+            history: err.response.history
+          }.to_json
         end
-        
-        JSON.parse(response.body, object_class: OpenStruct)
+
+        JSON.parse(response_body, object_class: OpenStruct)
       end
       
     end

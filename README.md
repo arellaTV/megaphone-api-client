@@ -11,8 +11,8 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 ```ruby
   MegaphoneClient.setup do |config|
       config.token = "{megaphone api token}"
-      config.network = "{megaphone network id}"
-      config.organization = "{megaphone organization id}"
+      config.network_id = "{megaphone network id}"
+      config.organization_id = "{megaphone organization id}"
   end
 ```
 
