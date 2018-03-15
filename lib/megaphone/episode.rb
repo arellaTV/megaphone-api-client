@@ -35,9 +35,9 @@ module Megaphone
 
       def update options={}
         if !options[:podcast_id] || !options[:episode_id]
-          return {
+          return OpenStruct.new({
             error: "Both podcast_id and episode_id options are required."
-          }
+          })
         end
 
         episode = connection({
