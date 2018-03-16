@@ -33,7 +33,7 @@ Note: the properties in `body` are written in camelCase because it's expected by
     body: {
       preCount: 1,
       postCount: 2,
-      insertionPoints: ["10.1, "15.23", "18"]
+      insertionPoints: ["10.1", "15.23", "18"]
     }
   })
 ```
