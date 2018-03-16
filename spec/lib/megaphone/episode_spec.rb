@@ -148,7 +148,7 @@ describe Megaphone::Episode do
         }
       })
 
-      expect(WebMock).to have_requested(:put, "https://cms.megaphone.fm/api/search/episodes?published=true").once
+      expect(WebMock).to have_requested(:get, "https://cms.megaphone.fm/api/search/episodes?published=true").once
     end
   end
 end
