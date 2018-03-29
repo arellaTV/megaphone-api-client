@@ -5,8 +5,6 @@ require "rest-client"
 module MegaphoneClient
   class Episode
     class << self
-      API_BASE_URL = "https://cms.megaphone.fm/api"
-
       def config
         @config ||= MegaphoneClient
       end
@@ -29,7 +27,7 @@ module MegaphoneClient
         end
 
         episode = connection({
-          :url => "#{API_BASE_URL}/search/episodes",
+          :url => "#{config.api_base_url}/search/episodes",
           :method => :get,
           :params => params
         })
@@ -43,7 +41,7 @@ module MegaphoneClient
         end
 
         episode = connection({
-          :url => "#{API_BASE_URL}/networks/#{config.network_id}/podcasts/#{options[:podcast_id]}/episodes/#{options[:episode_id]}",
+          :url => "#{config.api_base_url}/networks/#{config.network_id}/podcasts/#{options[:podcast_id]}/episodes/#{options[:episode_id]}",
           :method => :put,
           :body => options[:body] || {}
         })
