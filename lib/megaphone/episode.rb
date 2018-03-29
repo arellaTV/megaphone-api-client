@@ -2,7 +2,7 @@ require 'ostruct'
 require 'json'
 require 'rest-client'
 
-module Megaphone
+module MegaphoneClient
   class Episode
     class << self
       def config
@@ -23,7 +23,7 @@ module Megaphone
         # If an organizationId wasn't given in options and there is an organization_id in config
         if !options[:organizationId] && config.organization_id
           # Merge the organization_id from config into the params object
-          params = options.merge({ organizationId: config.organization_id })
+          params = options.merge({ organization_id: config.organization_id })
         end
 
         episode = connection({

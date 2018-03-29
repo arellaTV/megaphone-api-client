@@ -2,7 +2,7 @@ require 'ostruct'
 require 'json'
 require 'rest-client'
 
-module Megaphone
+module MegaphoneClient
   class Podcast
     class << self
       def config
