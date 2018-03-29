@@ -1,17 +1,19 @@
-require 'ostruct'
-require 'json'
-require 'rest-client'
+require "ostruct"
+require "json"
+require "rest-client"
 
 module MegaphoneClient
   class Podcast
     class << self
+      API_BASE_URL = "https://cms.megaphone.fm/api"
+
       def config
         @config ||= MegaphoneClient
       end
 
       def default_headers
         {
-          content_type: 'application/json',
+          content_type: "application/json",
           authorization: "Token token=#{config.token}",
           params: {}
         }
@@ -19,7 +21,7 @@ module MegaphoneClient
 
       def list options={}
         episode = connection({
-          :url => "https://cms.megaphone.fm/api/networks/#{config.network_id}/podcasts",
+          :url => "#{API_BASE_URL}/networks/#{config.network_id}/podcasts",
           :method => :get
         })
       end
