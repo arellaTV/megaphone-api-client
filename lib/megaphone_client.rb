@@ -1,5 +1,5 @@
-require "megaphone/podcast"
-require "megaphone/episode"
+require "megaphone_client/podcast"
+require "megaphone_client/episode"
 
 module MegaphoneClient
   class << self
