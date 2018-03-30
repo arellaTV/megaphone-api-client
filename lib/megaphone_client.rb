@@ -2,6 +2,9 @@ require "megaphone_client/podcast"
 require "megaphone_client/episode"
 
 module MegaphoneClient
+  class ConnectionError < StandardError
+  end
+
   class << self
     attr_accessor :api_base_url, :network_id, :organization_id, :token
 
@@ -24,18 +27,11 @@ module MegaphoneClient
           headers: request_headers,
           payload: options[:body].to_json
         )
-        response_body = response.body
       rescue RestClient::ExceptionWithResponse => err
-        response_body = {
-          body: err.response.body,
-          code: err.response.code,
-          description: err.response.description,
-          headers: err.response.headers,
-          history: err.response.history
-        }.to_json
+        raise ConnectionError.new("Megaphone ConnectionError: #{err.response.description}")
       end
 
-      JSON.parse(response_body, object_class: OpenStruct)
+      JSON.parse(response.body, object_class: OpenStruct)
     end
 
     def default_headers
