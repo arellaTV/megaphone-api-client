@@ -3,11 +3,25 @@ require "json"
 require "rest-client"
 
 module MegaphoneClient
+
+  # @author Jay Arella
   class Podcast
     class << self
+
+      # @return a MegaphoneClient
+      # @note This is used as a way to access top level attributes
+      # @example Accessing a network id
+      #   config.network_id #=> '{network id specified in initialization}'
+
       def config
         @config ||= MegaphoneClient
       end
+
+      # @return an array of structs that represents a list of podcasts
+      # @note It needs to be initialized with a network id
+      # @see MegaphoneClient#connection
+      # @example Get a list of all podcasts
+      #   @megaphone.podcast.list #=> An array of structs representing a list of podcasts
 
       def list options={}
         episode = MegaphoneClient.connection({
