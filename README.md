@@ -9,17 +9,17 @@ Unofficial Ruby client for the Megaphone API
 Configure your app to connect to Megaphone, either in an initializer or your environment files:
 
 ```ruby
-  MegaphoneClient.setup do |config|
-      config.token = "{megaphone api token}"
-      config.network_id = "{megaphone network id}"
-      config.organization_id = "{megaphone organization id}"
-  end
+  @megaphone = MegaphoneClient.new({
+    token: "{megaphone api token}",
+    network_id: "{megaphone network id}",
+    organization_id: "{megaphone organization id}"
+  })
 ```
 
 ### Searching
 
 ```ruby
-Megaphone::Episode.search({ externalId: obj_key })
+@megaphone.episode.search({ externalId: obj_key })
 ```
 
 ### Updating
@@ -27,7 +27,7 @@ Megaphone::Episode.search({ externalId: obj_key })
 Note: the properties in `body` are written in camelCase because it's expected by the Megaphone API
 
 ```ruby
-  Megaphone::Episode.update({
+  @megaphone.episode.update({
     podcast_id: "{podcast id}",
     episode_id: "{episode id}",
     body: {
@@ -41,7 +41,7 @@ Note: the properties in `body` are written in camelCase because it's expected by
 ### Listing Podcasts
 
 ```ruby
-Megaphone::Podcast.list
+@megaphone.podcast.list
 ```
 
 ### Creating

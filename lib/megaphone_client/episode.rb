@@ -22,7 +22,11 @@ module MegaphoneClient
       #   it merges the organization_id from config into the params object that will be passed into MegaphoneClient#connection
       # @see MegaphoneClient#connection
       # @example Search for an episode with externalId 'show_episode-12345'
-      #   @megaphone.episode.search({ externalId: 'show_episode-1245' }) #=> A struct representing 'show_episode-12345'
+      #   @megaphone.episode.search({
+      #     externalId: 'show_episode-1245'
+      #   })
+      #
+      #   #=> A struct representing 'show_episode-12345'
 
       def search options={}
         params = options
@@ -44,7 +48,13 @@ module MegaphoneClient
       # @note If neither a :podcast_id and :episode_id are given, it raises an error
       # @see MegaphoneClient#connection
       # @example Update an episode's preCount
-      #   @megaphone.episode.update({ podcast_id: '12345', episode_id: '56789', body: { preCount: 2 } }) #=> A struct representing episode '56789' with preCount 2
+      #   @megaphone.episode.update({
+      #     podcast_id: '12345',
+      #     episode_id: '56789',
+      #     body: { preCount: 2 }
+      #   })
+      #
+      #   #=> A struct representing episode '56789' with preCount 2
 
       def update options={}
         if !options[:podcast_id] || !options[:episode_id]
