@@ -3,11 +3,26 @@ require "json"
 require "rest-client"
 
 module MegaphoneClient
+
+  # @author Jay Arella
   class Episode
     class << self
+
+      # @return a MegaphoneClient
+      # @note This is used as a way to access top level attributes
+      # @example Accessing a network id
+      #   config.network_id #=> '{network id specified in initialization}'
+
       def config
         @config ||= MegaphoneClient
       end
+
+      # @return a struct (or array of structs) that represents the search results by episode
+      # @note If an organizationId wasn't given in options and there is an organization_id in config,
+      #   it merges the organization_id from config into the params object that will be passed into MegaphoneClient#connection
+      # @see MegaphoneClient#connection
+      # @example Search for an episode with externalId 'show_episode-12345'
+      #   @megaphone.episode.search({ externalId: 'show_episode-1245' }) #=> A struct representing 'show_episode-12345'
 
       def search options={}
         params = options
@@ -25,11 +40,15 @@ module MegaphoneClient
         })
       end
 
+      # @return a struct that represents the episode that was updated
+      # @note If neither a :podcast_id and :episode_id are given, it raises an error
+      # @see MegaphoneClient#connection
+      # @example Update an episode's preCount
+      #   @megaphone.episode.update({ podcast_id: '12345', episode_id: '56789', body: { preCount: 2 } }) #=> A struct representing episode '56789' with preCount 2
+
       def update options={}
         if !options[:podcast_id] || !options[:episode_id]
-          return OpenStruct.new({
-            error: "Both podcast_id and episode_id options are required."
-          })
+          raise MegaphoneClient::ConnectionError.new("Both podcast_id and episode_id options are required.")
         end
 
         episode = MegaphoneClient.connection({

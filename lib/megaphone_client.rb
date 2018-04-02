@@ -1,11 +1,11 @@
 require "megaphone_client/podcast"
 require "megaphone_client/episode"
 
+# @author Jay Arella
 module MegaphoneClient
   class ConnectionError < StandardError
   end
 
-  # @author Jay Arella
   class << self
     attr_accessor :api_base_url, :network_id, :organization_id, :token
 
@@ -27,14 +27,14 @@ module MegaphoneClient
       self
     end
 
-    # @option options [String] :method  Request method
+    # @option options [Symbol] :method  Request method
     # @option options [Hash] :params Request params in a hash
     # @option options [String] :payload If the request method is `POST`, the body of the post
     # @option options [String] :url Request url
     # @note This is a generalized REST method that is used by both the Episode and Podcast class.
     #   If it's successful, it returns a struct representing the data. If it fails, it raises a ConnectionError.
     # @example Get a list of podcasts
-    #   @megaphone.connection({ method: "GET", url: "https://cms.megaphone.fm/api/podcasts" }) #=> Array of structs representing podcasts
+    #   @megaphone.connection({ method: :get, url: "https://cms.megaphone.fm/api/podcasts" }) #=> Array of structs representing podcasts
 
     def connection options={}
       request_headers = default_headers.merge({ params: options[:params] })
