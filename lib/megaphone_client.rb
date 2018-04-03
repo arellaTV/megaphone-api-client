@@ -55,7 +55,7 @@ module MegaphoneClient
           payload: options[:body].to_json
         )
       rescue RestClient::ExceptionWithResponse => err
-        raise ConnectionError.new("Megaphone ConnectionError: #{err.response.description}")
+        raise ConnectionError.new("Megaphone ConnectionError: #{err.response.description}, Request: #{err.response.request.method} #{err.response.request.url}")
       end
 
       JSON.parse(response.body, object_class: OpenStruct)

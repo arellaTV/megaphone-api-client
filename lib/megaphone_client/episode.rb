@@ -31,7 +31,7 @@ module MegaphoneClient
         # If an organizationId wasn't given in params and there is an organization_id in config
         if !params[:organizationId] && config.organization_id
           # Merge the organization_id from config into the params object
-          params = params.merge({ organizationId: config.organization_id })
+          params.merge!({ organizationId: config.organization_id })
         end
 
         MegaphoneClient.connection({
