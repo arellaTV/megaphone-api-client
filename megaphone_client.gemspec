@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'megaphone_client'
-  s.version     = '0.0.0'
+  s.version     = '0.1.0'
   s.date        = '2018-03-13'
   s.summary     = "Ruby client for the Megaphone API"
   s.description = "Ruby client for the Megaphone API"
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage    =
     'https://github.com/SCPR/megaphone_client'
   s.license       = 'MIT'
-  
+
   s.add_dependency "rest-client", "~> 2.0"
   s.add_development_dependency "rspec", "~> 3.6.0"
 end
