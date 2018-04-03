@@ -1,9 +1,10 @@
 require 'webmock/rspec'
+require 'vcr'
 
-FIXTURES = {
-  :episode        => File.read(File.expand_path("spec/fixtures/episode.json")),
-  :search_result  => File.read(File.expand_path("spec/fixtures/search_result.json"))
-}
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+end
 
 Dir[File.expand_path("spec/support/**/*.rb")].each { |f| require f }
 
