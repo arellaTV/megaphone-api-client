@@ -21,10 +21,10 @@ module MegaphoneClient
       # @note It needs to be initialized with a network id
       # @see MegaphoneClient#connection
       # @example Get a list of all podcasts
-      #   @megaphone.podcast.list #=> An array of structs representing a list of podcasts
+      #   @megaphone.podcasts.list #=> An array of structs representing a list of podcasts
 
       def list options={}
-        episode = MegaphoneClient.connection({
+        MegaphoneClient.connection({
           :url => "#{config.api_base_url}/networks/#{config.network_id}/podcasts",
           :method => :get
         })

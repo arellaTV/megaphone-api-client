@@ -12,12 +12,12 @@ describe MegaphoneClient do
         token: "STUB_TOKEN"
       })
 
-      expect(@megaphone.episode.config.token).to eq "STUB_TOKEN"
-      expect(@megaphone.episode.config.network_id).to eq "STUB_NETWORK_ID"
-      expect(@megaphone.episode.config.organization_id).to eq "STUB_ORGANIZATION_ID"
-      expect(@megaphone.podcast.config.token).to eq "STUB_TOKEN"
-      expect(@megaphone.podcast.config.network_id).to eq "STUB_NETWORK_ID"
-      expect(@megaphone.podcast.config.organization_id).to eq "STUB_ORGANIZATION_ID"
+      expect(@megaphone.episodes.config.token).to eq "STUB_TOKEN"
+      expect(@megaphone.episodes.config.network_id).to eq "STUB_NETWORK_ID"
+      expect(@megaphone.episodes.config.organization_id).to eq "STUB_ORGANIZATION_ID"
+      expect(@megaphone.podcasts.config.token).to eq "STUB_TOKEN"
+      expect(@megaphone.podcasts.config.network_id).to eq "STUB_NETWORK_ID"
+      expect(@megaphone.podcasts.config.organization_id).to eq "STUB_ORGANIZATION_ID"
     end
   end
 

@@ -89,9 +89,9 @@ module MegaphoneClient
     #     token: '910'
     #   })
     #
-    #   @megaphone.episode #=> new MegaphoneClient::Episode
+    #   @megaphone.episodes #=> new MegaphoneClient::Episode
 
-    def episode
+    def episodes
       self::Episode
     end
 
@@ -103,9 +103,9 @@ module MegaphoneClient
     #     token: '910'
     #   })
     #
-    #   @megaphone.episode #=> new MegaphoneClient::Podcast
+    #   @megaphone.episodes #=> new MegaphoneClient::Podcast
 
-    def podcast
+    def podcasts
       self::Podcast
     end
   end

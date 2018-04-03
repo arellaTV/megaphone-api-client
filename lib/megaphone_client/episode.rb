@@ -28,16 +28,14 @@ module MegaphoneClient
       #
       #   #=> A struct representing 'show_episode-12345'
 
-      def search options={}
-        params = options
-
-        # If an organizationId wasn't given in options and there is an organization_id in config
-        if !options[:organizationId] && config.organization_id
+      def search params={}
+        # If an organizationId wasn't given in params and there is an organization_id in config
+        if !params[:organizationId] && config.organization_id
           # Merge the organization_id from config into the params object
-          params = options.merge({ organizationId: config.organization_id })
+          params = params.merge({ organizationId: config.organization_id })
         end
 
-        episode = MegaphoneClient.connection({
+        MegaphoneClient.connection({
           :url => "#{config.api_base_url}/search/episodes",
           :method => :get,
           :params => params
@@ -61,7 +59,7 @@ module MegaphoneClient
           raise MegaphoneClient::ConnectionError.new("Both podcast_id and episode_id options are required.")
         end
 
-        episode = MegaphoneClient.connection({
+        MegaphoneClient.connection({
           :url => "#{config.api_base_url}/networks/#{config.network_id}/podcasts/#{options[:podcast_id]}/episodes/#{options[:episode_id]}",
           :method => :put,
           :body => options[:body] || {}
