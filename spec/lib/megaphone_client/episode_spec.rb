@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'webmock/rspec'
 
 describe MegaphoneClient::Episode do
-  describe "Megaphone.search" do
+  describe "search" do
     before :each do
       @megaphone = MegaphoneClient.new({ organization_id: "STUB_ORGANIZATION_ID" })
       @episode = @megaphone.episode
@@ -26,19 +26,20 @@ describe MegaphoneClient::Episode do
     end
 
     it "should only perform GET requests" do
+      request_uri = "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID"
       VCR.use_cassette("search_result_01") do
         @episode.search
-        expect(WebMock).to have_requested(:get, "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID")
-        expect(WebMock).not_to have_requested(:put, "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID")
-        expect(WebMock).not_to have_requested(:post, "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID")
-        expect(WebMock).not_to have_requested(:patch, "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID")
-        expect(WebMock).not_to have_requested(:delete, "https://cms.megaphone.fm/api/search/episodes?organizationId=STUB_ORGANIZATION_ID")
+        expect(WebMock).to have_requested(:get, request_uri)
+        expect(WebMock).not_to have_requested(:put, request_uri)
+        expect(WebMock).not_to have_requested(:post, request_uri)
+        expect(WebMock).not_to have_requested(:patch, request_uri)
+        expect(WebMock).not_to have_requested(:delete, request_uri)
       end
     end
   end
 
-  describe "Megaphone.update" do
-    REQUEST_URI = "https://cms.megaphone.fm/api/networks/STUB_NETWORK_ID/podcasts/STUB_PODCAST_ID/episodes/STUB_EPISODE_ID"
+  describe "update" do
+    request_uri = "https://cms.megaphone.fm/api/networks/STUB_NETWORK_ID/podcasts/STUB_PODCAST_ID/episodes/STUB_EPISODE_ID"
 
     before :each do
       @megaphone = MegaphoneClient.new({ network_id: "STUB_NETWORK_ID" })
@@ -61,7 +62,7 @@ describe MegaphoneClient::Episode do
           }
         })
 
-        expect(WebMock).to have_requested(:put, REQUEST_URI)
+        expect(WebMock).to have_requested(:put, request_uri)
           .with(body: "{\"preCount\":1,\"postCount\":2,\"insertionPoints\":[\"10.1\",\"15.23\",\"18\"]}")
       end
     end
@@ -73,7 +74,7 @@ describe MegaphoneClient::Episode do
           episode_id: "STUB_EPISODE_ID"
         })
 
-        expect(WebMock).to have_requested(:put, REQUEST_URI)
+        expect(WebMock).to have_requested(:put, request_uri)
           .with(body: "{}")
       end
     end
@@ -85,31 +86,11 @@ describe MegaphoneClient::Episode do
           episode_id: "STUB_EPISODE_ID"
         })
 
-        expect(WebMock).not_to have_requested(:get, REQUEST_URI)
-        expect(WebMock).not_to have_requested(:post, REQUEST_URI)
-        expect(WebMock).not_to have_requested(:patch, REQUEST_URI)
-        expect(WebMock).not_to have_requested(:delete, REQUEST_URI)
+        expect(WebMock).not_to have_requested(:get, request_uri)
+        expect(WebMock).not_to have_requested(:post, request_uri)
+        expect(WebMock).not_to have_requested(:patch, request_uri)
+        expect(WebMock).not_to have_requested(:delete, request_uri)
       end
-    end
-  end
-
-  describe "Megaphone.connection" do
-    before :each do
-      @megaphone = MegaphoneClient.new
-    end
-
-    it "should add params to request_headers if they exist" do
-      VCR.use_cassette("connection_result_01") do
-        @megaphone.connection({
-          url: "https://cms.megaphone.fm/api/search/episodes",
-          method: :get,
-          params: {
-            published: true
-          }
-        })
-        expect(WebMock).to have_requested(:get, "https://cms.megaphone.fm/api/search/episodes?published=true").once
-      end
-
     end
   end
 end

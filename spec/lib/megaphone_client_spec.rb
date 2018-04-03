@@ -27,4 +27,24 @@ describe MegaphoneClient do
       expect(@megaphone.default_headers[:authorization]).to include "STUB_TOKEN"
     end
   end
+
+  describe "Megaphone.connection" do
+    before :each do
+      @megaphone = MegaphoneClient.new
+    end
+
+    it "should add params to request_headers if they exist" do
+      VCR.use_cassette("connection_result_01") do
+        @megaphone.connection({
+          url: "https://cms.megaphone.fm/api/search/episodes",
+          method: :get,
+          params: {
+            published: true
+          }
+        })
+        expect(WebMock).to have_requested(:get, "https://cms.megaphone.fm/api/search/episodes?published=true").once
+      end
+
+    end
+  end
 end
