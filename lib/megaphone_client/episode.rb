@@ -25,7 +25,6 @@ module MegaphoneClient
       #   @megaphone.episode.search({
       #     externalId: 'show_episode-1245'
       #   })
-      #
       #   #=> A struct representing 'show_episode-12345'
 
       def search params={}
@@ -51,7 +50,6 @@ module MegaphoneClient
       #     episode_id: '56789',
       #     body: { preCount: 2 }
       #   })
-      #
       #   #=> A struct representing episode '56789' with preCount 2
 
       def update options={}

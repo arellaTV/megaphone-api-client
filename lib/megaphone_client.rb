@@ -20,7 +20,6 @@ module MegaphoneClient
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #
     #   @megaphone #=> new MegaphoneClient
 
     def new options={}
@@ -43,7 +42,6 @@ module MegaphoneClient
     #     method: :get,
     #     url: "https://cms.megaphone.fm/api/podcasts"
     #   })
-    #
     #   #=> Array of structs representing podcasts
 
     def connection options={}
@@ -70,7 +68,6 @@ module MegaphoneClient
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #
     #   @megaphone.default_headers #=> { content_type: "application/json", authorization: "Token token=910", params: {} }
 
     def default_headers
@@ -88,7 +85,6 @@ module MegaphoneClient
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #
     #   @megaphone.episodes #=> new MegaphoneClient::Episode
 
     def episodes
@@ -102,7 +98,6 @@ module MegaphoneClient
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #
     #   @megaphone.episodes #=> new MegaphoneClient::Podcast
 
     def podcasts
