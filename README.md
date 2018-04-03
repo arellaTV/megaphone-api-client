@@ -13,7 +13,7 @@ gem 'megaphone_client', github:"scpr/megaphone_client"
 Configure your app to connect to Megaphone, either in an initializer or your environment files:
 
 ```ruby
-@megaphone = MegaphoneClient.new({
+megaphone = MegaphoneClient.new({
   token: "{megaphone api token}",
   network_id: "{megaphone network id}",
   organization_id: "{megaphone organization id}"
@@ -25,7 +25,7 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 **Note:** the property `externalId` is written in camelCase because it's expected by the Megaphone API
 
 ```ruby
-@megaphone.episode.search({ externalId: obj_key })
+megaphone.episodes.search({ externalId: obj_key })
 ```
 
 ### Updating
@@ -33,7 +33,7 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 **Note:** the properties in `body` are written in camelCase because it's expected by the Megaphone API
 
 ```ruby
-@megaphone.episode.update({
+megaphone.episodes.update({
   podcast_id: "{podcast id}",
   episode_id: "{episode id}",
   body: {
@@ -47,21 +47,21 @@ Configure your app to connect to Megaphone, either in an initializer or your env
 ### Listing Podcasts
 
 ```ruby
-@megaphone.podcast.list
+megaphone.podcasts.list
 ```
 
 ### Creating
 
 **(TO:DO)**
 ```ruby
-@megaphone.episode.create(attributes)
+megaphone.episodes.create(attributes)
 ```
 
 ## Tests
 
 To run the tests:
 ```bash
-$ bundle exec rspec spec
+bundle exec rspec spec
 ```
 
 ## Contributing

@@ -14,13 +14,13 @@ module MegaphoneClient
     # @option options [String] :organization_id The id of the Megaphone organization
     # @option options [String] :token The api token taken from Megaphone's developer settings (https://developers.megaphone.fm/)
     # @return a new instance of MegaphoneClient
-    # @example Initialize MegaphoneClient into an instance
-    #   @megaphone = MegaphoneClient.new({
+    # @example Initialize MegaphoneClient into a variable
+    #   megaphone = MegaphoneClient.new({
     #     network_id: '1234',
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #   @megaphone #=> new MegaphoneClient
+    #   megaphone #=> new MegaphoneClient
 
     def new options={}
       @api_base_url = options[:api_base_url] || "https://cms.megaphone.fm/api"
@@ -38,7 +38,7 @@ module MegaphoneClient
     # @note This is a generalized REST method that is used by both the Episode and Podcast class.
     #   If it's successful, it returns a struct representing the data. If it fails, it raises a ConnectionError.
     # @example Get a list of podcasts
-    #   @megaphone.connection({
+    #   megaphone.connection({
     #     method: :get,
     #     url: "https://cms.megaphone.fm/api/podcasts"
     #   })
@@ -63,12 +63,12 @@ module MegaphoneClient
 
     # @return a hash with the default request headers, includes the token
     # @example Calling #default_headers after initializing with a token
-    #   @megaphone = MegaphoneClient.new({
+    #   megaphone = MegaphoneClient.new({
     #     network_id: '1234',
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #   @megaphone.default_headers #=> { content_type: "application/json", authorization: "Token token=910", params: {} }
+    #   megaphone.default_headers #=> { content_type: "application/json", authorization: "Token token=910", params: {} }
 
     def default_headers
       {
@@ -80,12 +80,12 @@ module MegaphoneClient
 
     # @return a new instance of MegaphoneClient::Episode
     # @example Initialize MegaphoneClient into an instance
-    #   @megaphone = MegaphoneClient.new({
+    #   megaphone = MegaphoneClient.new({
     #     network_id: '1234',
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #   @megaphone.episodes #=> new MegaphoneClient::Episode
+    #   megaphone.episodes #=> new MegaphoneClient::Episode
 
     def episodes
       self::Episode
@@ -93,12 +93,12 @@ module MegaphoneClient
 
     # @return a new instance of MegaphoneClient::Podcast
     # @example Initialize MegaphoneClient into an instance
-    #   @megaphone = MegaphoneClient.new({
+    #   megaphone = MegaphoneClient.new({
     #     network_id: '1234',
     #     organization_id: '5678',
     #     token: '910'
     #   })
-    #   @megaphone.episodes #=> new MegaphoneClient::Podcast
+    #   megaphone.episodes #=> new MegaphoneClient::Podcast
 
     def podcasts
       self::Podcast

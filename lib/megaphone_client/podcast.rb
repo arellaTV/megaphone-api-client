@@ -21,7 +21,7 @@ module MegaphoneClient
       # @note It needs to be initialized with a network id
       # @see MegaphoneClient#connection
       # @example Get a list of all podcasts
-      #   @megaphone.podcasts.list #=> An array of structs representing a list of podcasts
+      #   megaphone.podcasts.list #=> An array of structs representing a list of podcasts
 
       def list options={}
         MegaphoneClient.connection({
