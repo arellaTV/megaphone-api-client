@@ -64,6 +64,11 @@ To run the tests:
 bundle exec rspec spec
 ```
 
+## Documentation
+
+You can view MegaphoneClient's documentation in RDoc format here:
+http://www.rubydoc.info/github/SCPR/megaphone_client/master/
+
 ## Contributing
 
 Pull Requests are encouraged!
