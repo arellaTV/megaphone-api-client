@@ -55,7 +55,7 @@ megaphone.podcasts.list
 ### Creating
 
 ```ruby
-megaphone.episode.create({
+megaphone.episodes.create({
   podcast_id: '{podcast_id}',
   body: {
     title: "{episode title}",

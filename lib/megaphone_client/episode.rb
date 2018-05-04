@@ -21,7 +21,7 @@ module MegaphoneClient
       # @note If a :podcast_id, :body[:title], and :body[:pubdate] aren't given, it raises an error.
       # @see MegaphoneClient#connection
       # @example Create an episode
-      #   megaphone.episode.create({
+      #   megaphone.episodes.create({
       #     podcast_id: '12345',
       #     body: {
       #       title: "title",
