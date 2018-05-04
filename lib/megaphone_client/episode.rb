@@ -18,15 +18,17 @@ module MegaphoneClient
       end
 
       # @return a struct that represents the episode that was created
-      # @note If a :podcast_id, :title, and :pubdate aren't given, it raises an error.
+      # @note If a :podcast_id, :body[:title], and :body[:pubdate] aren't given, it raises an error.
       # @see MegaphoneClient#connection
       # @example Create an episode
-      #   megaphone.episode.update({
+      #   megaphone.episode.create({
       #     podcast_id: '12345',
-      #     episode_id: '56789',
-      #     body: { preCount: 2 }
+      #     body: {
+      #       title: "title",
+      #       pubdate: "2020-06-01T14:54:02.690Z"
+      #     }
       #   })
-      #   #=> A struct representing episode '56789' with preCount 2
+      #   #=> A struct representing episode '12345' with title, "title", and scheduled to publish at June 1st, 2020
 
       def create options={}
         if !options[:podcast_id] || !options[:body] || !options[:body][:title] || !options[:body][:pubdate]
