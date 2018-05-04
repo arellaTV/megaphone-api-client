@@ -3,9 +3,6 @@ require "megaphone_client/episode"
 
 # @author Jay Arella
 module MegaphoneClient
-  class ClientError < StandardError
-  end
-
   class ConnectionError < StandardError
   end
 

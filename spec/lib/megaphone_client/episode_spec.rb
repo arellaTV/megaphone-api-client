@@ -12,12 +12,12 @@ describe MegaphoneClient::Episode do
       @episodes = @megaphone.episodes
     end
 
-    it "should return a MegaphoneClient::ClientError if lacking any of the required options: podcast_id, body, body[:title], body[:pubdate]" do
-      expect { @megaphone.episodes.create }.to raise_error(MegaphoneClient::ClientError)
-      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID" }) }.to raise_error(MegaphoneClient::ClientError)
-      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: {} }) }.to raise_error(MegaphoneClient::ClientError)
-      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: { title: "example_title" } }) }.to raise_error(MegaphoneClient::ClientError)
-      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: { pubdate: "2020-06-01T14:54:02.690Z" } }) }.to raise_error(MegaphoneClient::ClientError)
+    it "should return an ArgumentError if lacking any of the required options: podcast_id, body, body[:title], body[:pubdate]" do
+      expect { @megaphone.episodes.create }.to raise_error(ArgumentError)
+      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID" }) }.to raise_error(ArgumentError)
+      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: {} }) }.to raise_error(ArgumentError)
+      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: { title: "example_title" } }) }.to raise_error(ArgumentError)
+      expect { @megaphone.episodes.create({ podcast_id: "STUB_PODCAST_ID", body: { pubdate: "2020-06-01T14:54:02.690Z" } }) }.to raise_error(ArgumentError)
     end
 
     it "should pass options[:body] as the body of the request" do
@@ -95,8 +95,8 @@ describe MegaphoneClient::Episode do
       @episodes = @megaphone.episodes
     end
 
-    it "should return a MegaphoneClient::ClientError if no podcast_id or episode_id is given" do
-      expect { @megaphone.episodes.update }.to raise_error(MegaphoneClient::ClientError)
+    it "should return an ArgumentError if no podcast_id or episode_id is given" do
+      expect { @megaphone.episodes.update }.to raise_error(ArgumentError)
     end
 
     it "should pass options[:body] as the body of the request" do

@@ -32,7 +32,7 @@ module MegaphoneClient
 
       def create options={}
         if !options[:podcast_id] || !options[:body] || !options[:body][:title] || !options[:body][:pubdate]
-          raise MegaphoneClient::ClientError.new("podcast_id, body.title, and body.pubdate options are required.")
+          raise ArgumentError.new("podcast_id, body.title, and body.pubdate options are required.")
         end
 
         MegaphoneClient.connection({
@@ -79,7 +79,7 @@ module MegaphoneClient
 
       def update options={}
         if !options[:podcast_id] || !options[:episode_id]
-          raise MegaphoneClient::ClientError.new("Both podcast_id and episode_id options are required.")
+          raise ArgumentError.new("Both podcast_id and episode_id options are required.")
         end
 
         MegaphoneClient.connection({
