@@ -1,3 +1,5 @@
+[![Build Status](https://circleci.com/gh/SCPR/megaphone_client.png)](https://circleci.com/gh/SCPR/megaphone_client)
+
 # Megaphone Client
 Unofficial Ruby client for the Megaphone API
 
