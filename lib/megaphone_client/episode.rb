@@ -17,6 +17,31 @@ module MegaphoneClient
         @config ||= MegaphoneClient
       end
 
+      # @return a struct that represents the episode that was created
+      # @note If a :podcast_id, :body[:title], and :body[:pubdate] aren't given, it raises an error.
+      # @see MegaphoneClient#connection
+      # @example Create an episode
+      #   megaphone.episodes.create({
+      #     podcast_id: '12345',
+      #     body: {
+      #       title: "title",
+      #       pubdate: "2020-06-01T14:54:02.690Z"
+      #     }
+      #   })
+      #   #=> A struct representing episode '12345' with title, "title", and scheduled to publish at June 1st, 2020
+
+      def create options={}
+        if !options[:podcast_id] || !options[:body] || !options[:body][:title] || !options[:body][:pubdate]
+          raise ArgumentError.new("podcast_id, body.title, and body.pubdate options are required.")
+        end
+
+        MegaphoneClient.connection({
+          :url => "#{config.api_base_url}/networks/#{config.network_id}/podcasts/#{options[:podcast_id]}/episodes",
+          :method => :post,
+          :body => options[:body] || {}
+        })
+      end
+
       # @return a struct (or array of structs) that represents the search results by episode
       # @note If an organizationId wasn't given in options and there is an organization_id in config,
       #   it merges the organization_id from config into the params object that will be passed into MegaphoneClient#connection
@@ -54,7 +79,7 @@ module MegaphoneClient
 
       def update options={}
         if !options[:podcast_id] || !options[:episode_id]
-          raise MegaphoneClient::ConnectionError.new("Both podcast_id and episode_id options are required.")
+          raise ArgumentError.new("Both podcast_id and episode_id options are required.")
         end
 
         MegaphoneClient.connection({

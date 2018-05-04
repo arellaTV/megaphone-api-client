@@ -1,3 +1,5 @@
+[![Build Status](https://circleci.com/gh/SCPR/megaphone_client.png)](https://circleci.com/gh/SCPR/megaphone_client)
+
 # Megaphone Client
 Unofficial Ruby client for the Megaphone API
 
@@ -52,9 +54,14 @@ megaphone.podcasts.list
 
 ### Creating
 
-**(TO:DO)**
 ```ruby
-megaphone.episodes.create(attributes)
+megaphone.episodes.create({
+  podcast_id: '{podcast_id}',
+  body: {
+    title: "{episode title}",
+    pubdate: "2020-06-01T14:54:02.690Z"
+  }
+})
 ```
 
 ## Tests
@@ -71,4 +78,6 @@ http://www.rubydoc.info/github/SCPR/megaphone_client/master/
 
 ## Contributing
 
-Pull Requests are encouraged!
+Pull Requests are encouraged! Suggested practice:
+- Fork and make changes
+- Submit a PR from fork to this master
