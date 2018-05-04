@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'megaphone_client'
-  s.version     = '0.1.0'
+  s.version     = '0.2.0'
   s.date        = '2018-03-13'
   s.summary     = "Ruby client for the Megaphone API"
   s.description = "Ruby client for the Megaphone API"
